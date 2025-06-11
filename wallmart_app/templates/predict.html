@@ -1,0 +1,92 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+Predict using our models
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Make a Prediction</h2>
+    <form method="POST" action="{% url 'predict' %}">
+        {% csrf_token %}
+        
+        <!-- Input fields for each feature -->
+        <div class="form-group">
+            <label for="store">Store:</label>
+            <input type="number" class="form-control" id="store" name="Store" required>
+        </div>
+
+        {% comment %} <div class="form-group">
+            <label for="dept">Dept:</label>
+            <input type="number" class="form-control" id="dept" name="Dept" required>
+        </div> {% endcomment %}
+
+        <div class="form-group">
+            <label for="isholiday">Is Holiday:</label>
+            <select class="form-control" id="isholiday" name="IsHoliday" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="temperature">Temperature:</label>
+            <input type="number" step="0.1" class="form-control" id="temperature" name="Temperature" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fuel_price">Fuel Price:</label>
+            <input type="number" step="0.01" class="form-control" id="fuel_price" name="Fuel_Price" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cpi">CPI:</label>
+            <input type="number" step="0.01" class="form-control" id="cpi" name="CPI" required>
+        </div>
+
+        <div class="form-group">
+            <label for="unemployment">Unemployment:</label>
+            <input type="number" step="0.1" class="form-control" id="unemployment" name="Unemployment" required>
+        </div>
+
+        {% comment %} <div class="form-group">
+            <label for="size">Size:</label>
+            <input type="number" class="form-control" id="size" name="Size" required>
+        </div> {% endcomment %}
+
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <input type="number" class="form-control" id="year" name="Year" required>
+        </div>
+
+        <div class="form-group">
+            <label for="month">Month:</label>
+            <input type="number" class="form-control" id="month" name="Month" required>
+        </div>
+
+        <div class="form-group">
+            <label for="day">Day:</label>
+            <input type="number" class="form-control" id="day" name="Day" required>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" id="date" name="Date" required>
+        </div>
+
+        <!-- Dropdown to select the model -->
+        <div class="form-group">
+            <label for="model">Select Model:</label>
+            <select class="form-control" id="model" name="Model" required>
+                <option value="LSTM Model">LSTM Model</option>
+                <option value="Random Forest Model">Random Forest Model</option>
+                <option value="Complex Regression Model">Complex Regression Model</option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Predict</button>
+    </form>
+</div>
+{% endblock %}

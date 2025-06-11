@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load static %}  <!-- Load the static template tag -->
+
+{% block content %}
+    <p>
+        In this project, we aimed to predict weekly Walmart sales by developing and testing three machine learning models: LSTM (Long Short-Term Memory), Random Forest, and Complex Regression. The goal was to explore various approaches to sales prediction, leveraging historical data and key features such as temperature, fuel prices, CPI, and unemployment rates.
+
+The process began by preprocessing the data, which included calculating relevant features and handling missing values. The three models were trained using this processed data, with each model offering a unique approach to prediction: LSTM handled sequential data, Random Forest provided an ensemble learning method, and Complex Regression utilized a deep neural network with multiple layers.
+
+A Django-based web application was created to allow users to interact with these models. Users can input relevant data through a form, select a model, and receive a prediction for the upcoming week's sales. Additionally, a results dashboard was developed to display the performance metrics of each model, including Mean Squared Error (MSE) and R² Score, alongside visual graphs comparing actual vs. predicted sales.
+
+
+    </p>
+    {% for model in models %}
+    <div class="model-section">
+        <h2>{{ model.name }}</h2>
+        <div class="metrics">
+            <p><strong>Mean Squared Error:</strong> {{ model.mse }}</p>
+            <p><strong>R² Score:</strong> {{ model.r2 }}</p>
+            <p><strong>Status:</strong> {% if model.trained %}Model loaded from saved parameters{% else %}Model trained{% endif %}</p>
+        </div>
+        <div class="graph">
+            <img src="{% static '' %}{{ model.graph }}" alt="{{ model.name }} Actual vs Predicted">
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

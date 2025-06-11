@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Model Results{% endblock %}</title>
+    {% load static %}  <!-- Load the static template tag -->
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="{% url 'results' %}">Home</a>
+        <a href="{% url 'predict' %}">Prediction</a>
+    </nav>
+
+    <header>
+        <h1>{% block header %}Model Results Dashboard{% endblock %}</h1>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}© 2024 Walmart Sales Prediction{% endblock %}
+    </footer>
+</div>
+
+</body>
+</html>
